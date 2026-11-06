@@ -1,0 +1,71 @@
+{
+  "name": "Al-Dzikra — Dzikir Pagi, Petang & Ba'da Sholat",
+  "short_name": "Al-Dzikra",
+  "description": "Aplikasi Dzikir Pagi, Dzikir Petang, dan Dzikir Ba'da Sholat lengkap dengan penghitung tasbih interaktif, teks Arab, dan terjemahan.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "categories": ["lifestyle", "education", "books"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dzikir Pagi",
+      "short_name": "Dzikir Pagi",
+      "description": "Buka rangkaian Dzikir Pagi (27 bacaan)",
+      "url": "./?category=dzikir-pagi",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Dzikir Petang",
+      "short_name": "Dzikir Petang",
+      "description": "Buka rangkaian Dzikir Petang (24 bacaan)",
+      "url": "./?category=dzikir-petang",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Dzikir Ba'da Sholat",
+      "short_name": "Ba'da Sholat",
+      "description": "Buka rangkaian Dzikir Ba'da Sholat (14 bacaan)",
+      "url": "./?category=dzikir-sholat",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}
+
