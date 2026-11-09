@@ -40,3 +40,7 @@ Karena dibangun dengan standar **Progressive Web App (PWA)**, Al-Dzikra dapat di
 4. **🐧 Linux (Chrome / Chromium / Brave)**:
    - Klik tombol **"📲 Instal Aplikasi"** di header atau buka menu **⋮ → Save and Share → Install Al-Dzikra...** untuk menambahkan aplikasi ke Application Launcher Linux Anda.
 
+---
+© OptimaWebLabs
+
+
