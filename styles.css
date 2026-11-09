@@ -1,0 +1,795 @@
+:root {
+  --bg-primary: #f8faf8;
+  --bg-secondary: #ffffff;
+  --bg-elevated: #f0f6f3;
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --text-primary: #0f291e;
+  --text-secondary: #3f5e50;
+  --text-muted: #6b887a;
+  --accent-emerald: #047857;
+  --accent-emerald-dark: #064e3b;
+  --accent-emerald-light: #d1fae5;
+  --accent-gold: #d97706;
+  --accent-gold-light: #fef3c7;
+  --border-color: #dce8e2;
+  --card-shadow: 0 4px 20px -2px rgba(6, 78, 59, 0.07), 0 2px 6px -1px rgba(6, 78, 59, 0.04);
+  --card-completed-bg: #f2fbf7;
+  --card-completed-border: #34d399;
+  --arabic-font-size: 1.85rem;
+  --translation-font-size: 0.98rem;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #071712;
+  --bg-secondary: #0d241c;
+  --bg-elevated: #133328;
+  --bg-glass: rgba(13, 36, 28, 0.90);
+  --text-primary: #ecfdf5;
+  --text-secondary: #a7f3d0;
+  --text-muted: #6ee7b7;
+  --accent-emerald: #10b981;
+  --accent-emerald-dark: #059669;
+  --accent-emerald-light: rgba(16, 185, 129, 0.16);
+  --accent-gold: #fbbf24;
+  --accent-gold-light: rgba(251, 191, 36, 0.16);
+  --border-color: #1b4335;
+  --card-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.45);
+  --card-completed-bg: #0b2b20;
+  --card-completed-border: #059669;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding-bottom: calc(92px + var(--safe-bottom));
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+/* Header & Hero Banner */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-color);
+  padding-top: var(--safe-top);
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.75rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.25);
+}
+
+.brand-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 38px;
+  min-width: 38px;
+  padding: 0 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent-emerald);
+  background: var(--bg-elevated);
+}
+
+.icon-btn.install-cta {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(4, 120, 87, 0.3);
+}
+
+.icon-btn.install-cta:hover {
+  opacity: 0.94;
+  transform: translateY(-1px);
+}
+
+/* Main Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.15rem;
+}
+
+/* Hero Card */
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #064e3b 0%, #047857 60%, #065f46 100%);
+  color: #ffffff;
+  padding: 1.35rem 1.4rem;
+  margin-bottom: 1.15rem;
+  box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.35);
+}
+
+.hero-card::after {
+  content: '';
+  position: absolute;
+  right: -35px;
+  top: -35px;
+  width: 180px;
+  height: 180px;
+  background-image: url('./icons/icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(251, 191, 36, 0.22);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fef3c7;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.55rem;
+}
+
+.hero-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+
+.hero-subtitle {
+  font-size: 0.86rem;
+  color: rgba(236, 253, 245, 0.85);
+}
+
+/* Category Tabs */
+.category-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.category-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.category-tab:hover {
+  border-color: var(--accent-emerald);
+}
+
+.category-tab.active {
+  background: var(--accent-emerald-light);
+  border-color: var(--accent-emerald);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.category-tab-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.category-tab-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Toolbar & Progress Bar */
+.control-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.progress-section {
+  flex: 1 1 220px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-elevated);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #059669, #10b981);
+  border-radius: 999px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mode-switches {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.segmented-control {
+  display: inline-flex;
+  background: var(--bg-elevated);
+  padding: 0.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.segment-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.36rem 0.72rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.segment-btn.active {
+  background: var(--bg-secondary);
+  color: var(--accent-emerald);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Prayer Time Selector for Ba'da Sholat */
+.sholat-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  background: var(--accent-gold-light);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.82rem;
+}
+
+.sholat-filter-label {
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Search & Quick Jump Bar */
+.search-bar-wrap {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  flex: 1;
+  height: 42px;
+  padding: 0 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--accent-emerald);
+}
+
+/* Dzikir Card List */
+.dzikir-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dzikir-card {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.22s ease;
+  position: relative;
+}
+
+.dzikir-card.completed {
+  background: var(--card-completed-bg);
+  border-color: var(--card-completed-border);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.dzikir-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--accent-emerald-light);
+  color: var(--accent-emerald);
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dzikir-card.completed .dzikir-number {
+  background: var(--accent-emerald);
+  color: #ffffff;
+}
+
+.card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.repetition-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* Arabic Text */
+.arabic-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 1rem 0 1.15rem;
+}
+
+.arabic-paragraph {
+  font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+  font-size: var(--arabic-font-size);
+  line-height: 2.15;
+  text-align: right;
+  direction: rtl;
+  color: var(--text-primary);
+  word-spacing: 2px;
+}
+
+.arabic-bismillah {
+  color: var(--accent-emerald);
+  font-weight: 700;
+}
+
+/* Translation Text */
+.translation-container {
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--accent-emerald);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.translation-paragraph {
+  font-size: var(--translation-font-size);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Interactive Tasbih Counter Footer inside Card */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+.card-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tool-btn {
+  height: 36px;
+  padding: 0 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.tool-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-emerald);
+}
+
+.tasbih-btn {
+  flex: 1;
+  min-width: 190px;
+  max-width: 320px;
+  height: 48px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.1rem;
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+  transition: transform 0.1s ease, background 0.2s ease;
+  user-select: none;
+}
+
+.tasbih-btn:active {
+  transform: scale(0.97);
+}
+
+.tasbih-btn.done {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.tasbih-count-pill {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+/* Focus Mode (Single Card + Giant Ergonomic Tasbih Tap Area) */
+.focus-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.focus-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.focus-Tap-Pad {
+  margin-top: 0.5rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--accent-emerald);
+  background: linear-gradient(145deg, var(--bg-secondary), var(--bg-elevated));
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+  min-height: 170px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.08s ease, border-color 0.2s ease;
+}
+
+.focus-Tap-Pad:active {
+  transform: scale(0.985);
+}
+
+.focus-ring-count {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent-emerald);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.focus-tap-hint {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Modals (Settings & Install Guide) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.platform-item {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.9rem;
+  background: var(--bg-elevated);
+}
+
+.platform-item h4 {
+  font-size: 0.92rem;
+  margin-bottom: 0.35rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.platform-item p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Settings Row */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.setting-desc {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: calc(22px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #064e3b;
+  color: #ffffff;
+  padding: 0.65rem 1.15rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.22s ease;
+  z-index: 120;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --arabic-font-size: 1.65rem;
+  }
+  .header-inner {
+    padding: 0.65rem 0.9rem;
+  }
+  .container {
+    padding: 0.85rem 0.9rem;
+  }
+  .dzikir-card {
+    padding: 1rem;
+  }
+  .tasbih-btn {
+    max-width: 100%;
+    width: 100%;
+  }
+  .card-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .card-tools {
+    justify-content: flex-end;
+  }
+}
+
