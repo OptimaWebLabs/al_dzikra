@@ -1,4 +1,4 @@
-const CACHE_NAME = 'al-dzikra-v3.1.0';
+const CACHE_NAME = 'al-dzikra-v3.2.0';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,9 @@ const CORE_ASSETS = [
   './manifest.webmanifest',
   './fonts/lpmq_isep_misbah.ttf',
   './icons/icon.svg',
+  './icons/pagi.svg',
+  './icons/petang.svg',
+  './icons/sholat.svg',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',

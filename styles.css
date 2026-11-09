@@ -228,6 +228,13 @@ body {
   justify-content: center;
 }
 
+.menu-card-icon img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+}
+
 .menu-card-body {
   flex: 1;
   min-width: 0;
