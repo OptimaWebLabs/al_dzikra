@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'LPMQ Isep Misbah';
+  src: url('./fonts/lpmq_isep_misbah.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-primary: #f8faf8;
   --bg-secondary: #ffffff;
@@ -487,9 +495,9 @@ body {
 }
 
 .arabic-paragraph {
-  font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+  font-family: 'LPMQ Isep Misbah', 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
   font-size: var(--arabic-font-size);
-  line-height: 2.15;
+  line-height: 2.35;
   text-align: right;
   direction: rtl;
   color: var(--text-primary);
