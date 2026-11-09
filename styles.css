@@ -61,22 +61,34 @@ html,
 body {
   min-height: 100vh;
   min-height: 100dvh;
+  min-height: -webkit-fill-available;
   font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
   color: var(--text-main);
-  background-color: #0e1d15;
+  background-color: transparent;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
-/* Fixed Full-Viewport Archway Background */
+/* Fixed Full-Viewport Archway Background (extends under status & gesture bars) */
 .app-background {
   position: fixed;
-  inset: 0;
+  top: calc(-1 * env(safe-area-inset-top, 0px));
+  right: calc(-1 * env(safe-area-inset-right, 0px));
+  bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+  left: calc(-1 * env(safe-area-inset-left, 0px));
+  width: calc(100% + env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px));
+  height: calc(100% + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
   z-index: 0;
   background-image: var(--bg-image);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   transition: background-image 0.3s ease;
+  pointer-events: none;
 }
 
 /* Centered Mobile-First Shell */
@@ -87,7 +99,7 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
-  padding: calc(0.85rem + var(--safe-top)) 1rem calc(74px + var(--safe-bottom));
+  padding: calc(1.25rem + var(--safe-top)) 1rem calc(74px + var(--safe-bottom));
   display: flex;
   flex-direction: column;
 }

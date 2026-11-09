@@ -28,7 +28,6 @@
   const fontSizeSlider = document.getElementById('fontSizeSlider');
   const fontSizeLabel = document.getElementById('fontSizeLabel');
   const themeRadios = document.querySelectorAll('input[name="themeMode"]');
-  const metaThemeColor = document.getElementById('metaThemeColor');
 
   function loadPrefs() {
     try {
@@ -59,9 +58,6 @@
   function applyPrefs() {
     const effectiveTheme = resolveEffectiveTheme();
     document.documentElement.setAttribute('data-theme', effectiveTheme);
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#14261c' : '#d3e0d3');
-    }
 
     // Apply Arabic font size (sp -> px)
     const sp = Number(prefs.arabicSp) || 30;

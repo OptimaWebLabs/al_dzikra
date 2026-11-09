@@ -6,11 +6,10 @@
   "dir": "ltr",
   "start_url": "./?source=pwa",
   "scope": "./",
-  "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "portrait-primary",
   "background_color": "#14261c",
-  "theme_color": "#14261c",
   "categories": ["lifestyle", "education", "books"],
   "icons": [
     {
