@@ -1,4 +1,4 @@
-const CACHE_NAME = 'al-dzikra-v1.1.0';
+const CACHE_NAME = 'al-dzikr-v2.0.0';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -10,7 +10,9 @@ const CORE_ASSETS = [
   './icons/icon.svg',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './icons/bg-dark.jpg',
+  './icons/bg-light.jpg'
 ];
 
 self.addEventListener('install', (event) => {

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="id" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Al-Dzikra — Dzikir Pagi, Petang &amp; Ba'da Sholat</title>
-  <meta name="description" content="Aplikasi Web & PWA Dzikir Pagi, Dzikir Petang, dan Dzikir Ba'da Sholat sesuai Sunnah. Dilengkapi penghitung tasbih interaktif dan dapat diinstal di Android, iOS, Windows, dan Linux." />
-  <meta name="theme-color" content="#064e3b" />
-  <meta name="application-name" content="Al-Dzikra" />
+  <title>Al-Dzikr — Aplikasi Dzikir Harian</title>
+  <meta name="description" content="Al-Dzikr adalah aplikasi dzikir harian yang dirancang untuk memudahkan umat Islam mengingat Allah SWT di setiap waktu. Dilengkapi Dzikir Pagi, Dzikir Petang, dan Dzikir Setelah Sholat." />
+  <meta name="theme-color" content="#14281d" id="metaThemeColor" />
+  <meta name="application-name" content="Al-Dzikr" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Al-Dzikra" />
-  <meta name="msapplication-TileColor" content="#064e3b" />
+  <meta name="apple-mobile-web-app-title" content="Al-Dzikr" />
+  <meta name="msapplication-TileColor" content="#14281d" />
 
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
@@ -21,214 +21,293 @@
   <link rel="preload" href="./fonts/lpmq_isep_misbah.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <!-- Sticky Top App Header -->
-  <header class="app-header">
-    <div class="header-inner">
-      <a href="./" class="brand" aria-label="Al-Dzikra Beranda">
-        <img src="./icons/icon.svg" alt="Al-Dzikra Logo" class="brand-icon" />
-        <div>
-          <div class="brand-title">Al-Dzikra</div>
-          <div class="brand-subtitle">Dzikir Pagi, Petang &amp; Ba'da Sholat</div>
-        </div>
-      </a>
+  <!-- Fixed Full-Screen Background Artwork -->
+  <div class="app-background" aria-hidden="true"></div>
 
-      <div class="header-actions">
-        <button id="btnInstallApp" class="icon-btn install-cta" type="button" title="Instal Aplikasi di Android, iOS, Windows, atau Linux">
-          <span>📲</span>
-          <span>Instal Aplikasi</span>
-        </button>
-        <button id="btnSettings" class="icon-btn" type="button" title="Pengaturan Tampilan & Suara" aria-label="Pengaturan">
-          ⚙️
-        </button>
-        <button id="btnThemeToggle" class="icon-btn" type="button" title="Ganti Mode Gelap / Terang" aria-label="Ganti Tema">
-          🌙
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container">
-    <!-- Hero Banner -->
-    <section class="hero-card" aria-live="polite">
-      <div class="hero-top">
-        <div>
-          <div id="timeRecommendationBadge" class="time-badge">
-            <span>✨</span>
-            <span id="timeRecommendationText">Waktu Dzikir</span>
+  <!-- Main Viewport Container -->
+  <div class="app-shell">
+    <!-- SCREEN 1: BERANDA -->
+    <main id="screen-beranda" class="screen active" aria-label="Beranda">
+      <div class="home-layout">
+        <!-- Top Right Brand & Verse -->
+        <header class="home-header">
+          <div class="brand-badge">
+            <img src="./icons/icon.svg" alt="Al-Dzikr Logo" class="brand-emblem" />
+            <span class="brand-name">Al-Dzikr</span>
           </div>
-          <h1 id="activeCategoryTitle" class="hero-title">Dzikir Pagi</h1>
-          <p id="activeCategorySubtitle" class="hero-subtitle">
-            Dibaca setelah Subuh hingga terbit matahari (atau waktu Dhuha)
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Category Selector Tabs -->
-    <nav class="category-tabs" aria-label="Pilih Kategori Dzikir">
-      <button type="button" class="category-tab active" data-category="dzikir-pagi">
-        <span class="category-tab-title">☀️ Dzikir Pagi</span>
-        <span class="category-tab-count">27 Bacaan</span>
-      </button>
-      <button type="button" class="category-tab" data-category="dzikir-petang">
-        <span class="category-tab-title">🌙 Dzikir Petang</span>
-        <span class="category-tab-count">24 Bacaan</span>
-      </button>
-      <button type="button" class="category-tab" data-category="dzikir-sholat">
-        <span class="category-tab-title">🕌 Ba'da Sholat</span>
-        <span class="category-tab-count">14 Bacaan</span>
-      </button>
-    </nav>
+          <div class="verse-box">
+            <p class="verse-arabic" dir="rtl">
+              يٰٓاَيُّهَا الَّذِيْنَ اٰمَنُوا اذْكُرُوا اللّٰهَ ذِكْرًا<br />
+              كَثِيْرًاۙ وَّسَبِّحُوْهُ بُكْرَةً وَّاَصِيْلًا.
+            </p>
+            <p class="verse-translation">
+              Wahai orang-orang yang beriman, ingatlah Allah dengan zikir sebanyak-banyaknya dan bertasbihlah kepada-Nya pada waktu pagi dan petang.
+            </p>
+          </div>
+        </header>
 
-    <!-- Special Subuh / Maghrib / Umum selector for Dzikir Ba'da Sholat -->
-    <div id="sholatTimeFilter" class="sholat-filter-bar" style="display: none;">
-      <div class="sholat-filter-label">
-        <span>🕋</span>
-        <span>Penyesuaian Hitungan Waktu Sholat:</span>
-      </div>
-      <div class="segmented-control" role="group" aria-label="Pilih Waktu Sholat">
-        <button type="button" class="segment-btn active" data-sholat-mode="subuh">Subuh (Lengkap)</button>
-        <button type="button" class="segment-btn" data-sholat-mode="maghrib">Maghrib</button>
-        <button type="button" class="segment-btn" data-sholat-mode="umum"> Zuhur / Ashar / Isya</button>
-      </div>
-    </div>
-
-    <!-- Progress & View Mode Control Bar -->
-    <section class="control-bar">
-      <div class="progress-section">
-        <div class="progress-header">
-          <span id="progressSummaryText">Progres Selesai: 0 / 27 (0%)</span>
-          <button id="btnResetProgress" type="button" class="tool-btn" title="Ulangi hitungan kategori ini dari 0">
-            🔄 Reset
+        <!-- Category Menu Cards -->
+        <section class="menu-cards" aria-label="Kategori Dzikir">
+          <!-- Card 1: Dzikir Pagi -->
+          <button type="button" class="menu-card" data-open-category="dzikir-pagi">
+            <div class="menu-card-icon" aria-hidden="true">
+              <!-- Rising Sun + Praying Hands Icon -->
+              <svg viewBox="0 0 64 64" width="48" height="48">
+                <circle cx="32" cy="32" r="30" fill="#9db8a0" />
+                <!-- Sun & Rays -->
+                <g stroke="#183626" stroke-width="2.2" stroke-linecap="round">
+                  <line x1="32" y1="10" x2="32" y2="15" />
+                  <line x1="21" y1="13" x2="23.5" y2="17.2" />
+                  <line x1="43" y1="13" x2="40.5" y2="17.2" />
+                  <line x1="14" y1="21" x2="18.2" y2="23" />
+                  <line x1="50" y1="21" x2="45.8" y2="23" />
+                </g>
+                <path d="M22 29 A10 10 0 0 1 42 29 Z" fill="#183626" />
+                <!-- Cupped Praying Hands -->
+                <path d="M16 34 C16 42, 22 48, 30 49 L30 39 C25 38, 22 34, 20 31 Z" fill="#183626" />
+                <path d="M48 34 C48 42, 42 48, 34 49 L34 39 C39 38, 42 34, 44 31 Z" fill="#183626" />
+              </svg>
+            </div>
+            <div class="menu-card-body">
+              <h2 class="menu-card-title">Dzikir Pagi</h2>
+              <p class="menu-card-desc">Membuka hari dengan keberkahan</p>
+              <div class="menu-card-divider"></div>
+              <p class="menu-card-time">Setelah Subuh s/d Syuruq</p>
+            </div>
           </button>
-        </div>
-        <div class="progress-track">
-          <div id="progressBarFill" class="progress-fill" style="width: 0%;"></div>
-        </div>
-      </div>
 
-      <div class="mode-switches">
-        <div class="segmented-control" role="group" aria-label="Mode Tampilan">
-          <button type="button" class="segment-btn active" data-view-mode="list">📋 Mode Daftar</button>
-          <button type="button" class="segment-btn" data-view-mode="focus">📿 Mode Fokus</button>
+          <!-- Card 2: Dzikir Petang -->
+          <button type="button" class="menu-card" data-open-category="dzikir-petang">
+            <div class="menu-card-icon" aria-hidden="true">
+              <!-- Crescent Moon + Stars + Mosque Dome Icon -->
+              <svg viewBox="0 0 64 64" width="48" height="48">
+                <circle cx="32" cy="32" r="30" fill="#9db8a0" />
+                <!-- Crescent Moon -->
+                <path d="M29 14 A15 15 0 1 0 44 41 A12.5 12.5 0 1 1 29 14 Z" fill="#183626" />
+                <!-- Stars -->
+                <circle cx="29" cy="22" r="1.5" fill="#183626" />
+                <circle cx="35" cy="17" r="1.3" fill="#183626" />
+                <polygon points="24,28 25,30.5 27.5,31.5 25,32.5 24,35 23,32.5 20.5,31.5 23,30.5" fill="#183626" />
+                <!-- Small Mosque Dome & Minaret -->
+                <path d="M31 36 C31 30, 37 27, 37 25 C37 27, 43 30, 43 36 Z" fill="#183626" />
+                <rect x="45" y="23" width="3" height="14" rx="1" fill="#183626" />
+              </svg>
+            </div>
+            <div class="menu-card-body">
+              <h2 class="menu-card-title">Dzikir Petang</h2>
+              <p class="menu-card-desc">Ketentraman di penghujung hari</p>
+              <div class="menu-card-divider"></div>
+              <p class="menu-card-time">Setelah Ashar s/d Maghrib</p>
+            </div>
+          </button>
+
+          <!-- Card 3: Dzikir Setelah Sholat -->
+          <button type="button" class="menu-card" data-open-category="dzikir-sholat">
+            <div class="menu-card-icon" aria-hidden="true">
+              <!-- Prayer Rug (Sajadah) Icon -->
+              <svg viewBox="0 0 64 64" width="48" height="48">
+                <circle cx="32" cy="32" r="30" fill="#9db8a0" />
+                <!-- Rug Tassels Top & Bottom -->
+                <g stroke="#183626" stroke-width="1.6" stroke-linecap="round">
+                  <line x1="23" y1="12" x2="23" y2="15" />
+                  <line x1="27" y1="12" x2="27" y2="15" />
+                  <line x1="32" y1="12" x2="32" y2="15" />
+                  <line x1="37" y1="12" x2="37" y2="15" />
+                  <line x1="41" y1="12" x2="41" y2="15" />
+                  <line x1="23" y1="49" x2="23" y2="52" />
+                  <line x1="27" y1="49" x2="27" y2="52" />
+                  <line x1="32" y1="49" x2="32" y2="52" />
+                  <line x1="37" y1="49" x2="37" y2="52" />
+                  <line x1="41" y1="49" x2="41" y2="52" />
+                </g>
+                <!-- Rug Body -->
+                <rect x="20" y="15" width="24" height="34" rx="2" fill="#183626" />
+                <!-- Inner Arch & Diamond Motif -->
+                <path d="M23 46 L23 24 C23 19, 32 17, 32 17 C32 17, 41 19, 41 24 L41 46 Z" fill="none" stroke="#9db8a0" stroke-width="1.5" />
+                <polygon points="32,25 37,33 32,41 27,33" fill="none" stroke="#9db8a0" stroke-width="1.5" />
+                <circle cx="32" cy="33" r="2" fill="#9db8a0" />
+              </svg>
+            </div>
+            <div class="menu-card-body">
+              <h2 class="menu-card-title">Dzikir Setelah Sholat</h2>
+              <p class="menu-card-desc">Penyempurna ibadah fardhu</p>
+              <div class="menu-card-divider"></div>
+              <p class="menu-card-time">Rutinitas ba'da sholat fardhu</p>
+            </div>
+          </button>
+        </section>
+      </div>
+    </main>
+
+    <!-- SCREEN 2: DZIKIR READER -->
+    <section id="screen-reader" class="screen" aria-label="Bacaan Dzikir">
+      <div class="reader-layout">
+        <!-- Sticky Top Category Header Pill -->
+        <header class="reader-header-card">
+          <button type="button" id="btnBackToHome" class="back-circle-btn" aria-label="Kembali ke Beranda">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+          <div class="reader-header-text">
+            <h1 id="readerCategoryTitle" class="reader-title">Dzikir Pagi</h1>
+            <p id="readerCategoryCount" class="reader-subtitle">27 Item Dzikir</p>
+          </div>
+        </header>
+
+        <!-- Dzikir Items List -->
+        <div id="dzikirItemsList" class="reader-items-list"></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: PENGATURAN -->
+    <section id="screen-pengaturan" class="screen" aria-label="Pengaturan Tampilan">
+      <div class="centered-modal-wrap">
+        <div class="glass-panel settings-panel">
+          <h1 class="panel-heading">Pengaturan Tampilan</h1>
+          <div class="panel-divider"></div>
+
+          <div class="setting-block">
+            <label for="fontSizeSlider" id="fontSizeLabel" class="setting-title">
+              Ukuran Teks Arab: 28 sp
+            </label>
+            <div class="slider-wrap">
+              <input
+                type="range"
+                id="fontSizeSlider"
+                class="teal-slider"
+                min="18"
+                max="42"
+                step="1"
+                value="28"
+              />
+            </div>
+
+            <p class="preview-caption">Pratinjau Teks Arab:</p>
+            <div class="preview-box">
+              <p id="arabicPreviewText" class="arabic-text preview-arabic" dir="rtl">
+                الْحَمْدُ لِلّٰهِ وَحْدَهُ، وَالصَّلَاةُ وَالسَّلَاَمُ عَلٰى مَنْ لَا نَبِيَّ بَعْدَهُ.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel-divider"></div>
+
+          <div class="setting-block">
+            <h2 class="setting-title" style="margin-bottom: 0.85rem;">Pilihan Tema</h2>
+            <div class="theme-radio-group" role="radiogroup" aria-label="Pilihan Tema">
+              <label class="radio-option">
+                <input type="radio" name="themeMode" value="system" />
+                <span class="radio-circle"></span>
+                <span class="radio-label">Ikuti Sistem</span>
+              </label>
+
+              <label class="radio-option">
+                <input type="radio" name="themeMode" value="light" />
+                <span class="radio-circle"></span>
+                <span class="radio-label">Mode Terang</span>
+              </label>
+
+              <label class="radio-option">
+                <input type="radio" name="themeMode" value="dark" checked />
+                <span class="radio-circle"></span>
+                <span class="radio-label">Mode Gelap</span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Search Bar (List Mode) -->
-    <div id="searchBarWrap" class="search-bar-wrap">
-      <input
-        id="searchInput"
-        type="search"
-        class="search-input"
-        placeholder="Cari judul dzikir atau potongan arti (misal: Ayat Kursi, Istighfar)..."
-        aria-label="Cari Dzikir"
-      />
-    </div>
+    <!-- SCREEN 4: TENTANG -->
+    <section id="screen-tentang" class="screen" aria-label="Tentang Aplikasi">
+      <div class="centered-modal-wrap">
+        <div class="glass-panel about-panel">
+          <img src="./icons/icon.svg" alt="Al-Dzikr Logo" class="about-logo" />
+          <h1 class="about-title">Al-Dzikr</h1>
+          <p class="about-version">Aplikasi Dzikir Harian • Versi 1.0.0</p>
 
-    <!-- Dzikir Content Container -->
-    <div id="dzikirContainer" class="dzikir-list"></div>
-  </main>
+          <div class="panel-divider"></div>
 
-  <!-- Settings Modal -->
-  <div id="settingsModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="settingsModalTitle" class="modal-title">⚙️ Pengaturan Tampilan &amp; Tasbih</h2>
-        <button type="button" class="icon-btn" data-close-modal="settingsModal" aria-label="Tutup">✕</button>
-      </div>
+          <div class="about-body">
+            <p>
+              Al-Dzikr adalah aplikasi dzikir harian yang dirancang untuk memudahkan umat Islam mengingat Allah SWT di setiap waktu.
+            </p>
+            <p>
+              Dilengkapi dengan bacaan Dzikir Pagi, Dzikir Petang, dan Dzikir Setelah Sholat sesuai dengan tuntunan sunnah.
+            </p>
+            <p>
+              Untuk saran, bug dan permintaan fitur hubungi<br />
+              <a href="mailto:Optima.WebLabs@gmail.com" class="about-email">Optima.WebLabs@gmail.com</a>
+            </p>
+          </div>
 
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Ukuran Huruf Arab</div>
-          <div class="setting-desc">Sesuaikan kenyamanan membaca teks Arab</div>
+          <div class="panel-divider"></div>
+
+          <p class="about-footer">Semoga bermanfaat.</p>
+
+          <div class="install-section">
+            <button type="button" id="btnOpenInstallModal" class="install-pill-btn">
+              📲 Instal Aplikasi (Android / iOS / Windows / Linux)
+            </button>
+          </div>
         </div>
-        <div class="segmented-control">
-          <button type="button" class="segment-btn" id="btnFontMinus">A-</button>
-          <button type="button" class="segment-btn" id="btnFontReset">Normal</button>
-          <button type="button" class="segment-btn" id="btnFontPlus">A+</button>
-        </div>
       </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Tampilkan Terjemahan</div>
-          <div class="setting-desc">Sembunyikan jika ingin fokus pada teks Arab saja</div>
-        </div>
-        <input type="checkbox" id="chkShowTranslation" checked style="width: 20px; height: 20px; accent-color: #047857;" />
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Auto-Scroll / Lanjut Otomatis</div>
-          <div class="setting-desc">Otomatis berpindah ke dzikir berikutnya saat target tercapai</div>
-        </div>
-        <input type="checkbox" id="chkAutoAdvance" checked style="width: 20px; height: 20px; accent-color: #047857;" />
-      </div>
-
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Getar &amp; Suara Klik Tasbih</div>
-          <div class="setting-desc">Umpan balik sentuhan saat menekan tombol penghitung</div>
-        </div>
-        <input type="checkbox" id="chkSoundVibrate" checked style="width: 20px; height: 20px; accent-color: #047857;" />
-      </div>
-    </div>
+    </section>
   </div>
 
-  <!-- Multi-Platform Install Guide Modal -->
-  <div id="installModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="installModalTitle">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="installModalTitle" class="modal-title">📲 Instal Al-Dzikra di Perangkat Anda</h2>
-        <button type="button" class="icon-btn" data-close-modal="installModal" aria-label="Tutup">✕</button>
+  <!-- Install Instructions Modal -->
+  <div id="installGuideModal" class="install-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="installGuideTitle">
+    <div class="glass-panel install-modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.6rem;">
+        <h2 id="installGuideTitle" style="font-size: 1.05rem; font-weight: 700;">Instal Al-Dzikr</h2>
+        <button type="button" id="btnCloseInstallModal" class="close-btn" aria-label="Tutup">✕</button>
       </div>
-
-      <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 0.85rem;">
-        <strong>Al-Dzikra</strong> adalah Progressive Web App (PWA) yang dapat diinstal secara gratis dan berjalan <strong>100% Offline tanpa kuota internet</strong> di semua sistem operasi:
-      </p>
-
-      <div id="nativeInstallBanner" style="display: none; margin-bottom: 1rem;">
-        <button id="btnTriggerNativeInstall" type="button" class="tasbih-btn" style="max-width: 100%; width: 100%; justify-content: center; gap: 0.5rem;">
-          <span>🚀</span>
-          <span>Instal Langsung Sekarang (1-Klik)</span>
+      <div class="panel-divider"></div>
+      <div id="nativeInstallWrap" style="display:none; margin: 0.75rem 0;">
+        <button type="button" id="btnNativeInstallNow" class="install-pill-btn" style="width:100%; font-weight:700;">
+          🚀 Instal Langsung Sekarang (1-Klik)
         </button>
       </div>
-
-      <div class="platform-grid">
-        <div class="platform-item">
-          <h4>🤖 Android (Chrome / Edge / Samsung Internet)</h4>
-          <p>Ketuk tombol <strong>Instal Langsung</strong> di atas, atau buka menu titik tiga <strong>(⋮)</strong> di pojok kanan atas browser lalu pilih <strong>"Instal aplikasi" (Install app)</strong> atau <strong>"Tambahkan ke layar utama"</strong>.</p>
-        </div>
-
-        <div class="platform-item">
-          <h4>🍎 iOS &amp; iPadOS (iPhone / iPad via Safari)</h4>
-          <p>1. Buka halaman ini di <strong>Safari</strong>.<br/>2. Ketuk ikon <strong>Bagikan (Share)</strong> <span style="display:inline-block; padding: 0 4px; border: 1px solid var(--border-color); border-radius: 4px;">⍐</span> di bilah bawah.<br/>3. Gulir ke bawah lalu pilih <strong>"Tambah ke Layar Utama" (Add to Home Screen)</strong>, lalu ketuk <strong>Tambah</strong>.</p>
-        </div>
-
-        <div class="platform-item">
-          <h4>🪟 Windows 10 / 11 (Chrome / Microsoft Edge)</h4>
-          <p>Klik ikon <strong>Instal Al-Dzikra (⊕ / komputer dengan panah)</strong> di sisi kanan bilah alamat (Address Bar), lalu klik <strong>Instal</strong>. Aplikasi akan muncul di Start Menu &amp; Desktop.</p>
-        </div>
-
-        <div class="platform-item">
-          <h4>🐧 Linux (Chrome / Chromium / Brave / Firefox PWA)</h4>
-          <p>Di Chrome/Chromium/Brave, klik ikon <strong>Install Al-Dzikra</strong> di bilah alamat (atau buka menu <strong>⋮ → Save and Share → Install Al-Dzikra...</strong>) untuk menambahkan pintasan ke Application Launcher desktop Linux Anda.</p>
-        </div>
+      <div class="install-steps">
+        <p><strong>🤖 Android (Chrome / Edge):</strong> Buka menu <strong>(⋮)</strong> di pojok kanan atas lalu ketuk <strong>"Instal aplikasi"</strong>.</p>
+        <p><strong>🍎 iOS / iPhone (Safari):</strong> Ketuk tombol <strong>Bagikan (Share)</strong> di bawah, lalu pilih <strong>"Tambah ke Layar Utama"</strong>.</p>
+        <p><strong>🪟 Windows &amp; 🐧 Linux:</strong> Klik ikon <strong>Instal Al-Dzikr</strong> di sisi kanan bilah alamat (Address Bar) browser.</p>
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <!-- Fixed Bottom Navigation Bar -->
+  <nav class="bottom-nav" aria-label="Navigasi Utama">
+    <button type="button" class="nav-item active" data-nav-target="beranda">
+      <svg class="nav-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M12 3.2L2 12h3v8h5v-6h4v6h5v-8h3L12 3.2zm0 2.69l6 5.4V18h-2v-6H8v6H6v-6.71l6-5.4z"/>
+      </svg>
+      <span class="nav-label">Beranda</span>
+    </button>
+
+    <button type="button" class="nav-item" data-nav-target="pengaturan">
+      <svg class="nav-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+      </svg>
+      <span class="nav-label">Pengaturan</span>
+    </button>
+
+    <button type="button" class="nav-item" data-nav-target="tentang">
+      <svg class="nav-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+      </svg>
+      <span class="nav-label">Tentang</span>
+    </button>
+  </nav>
 
   <script src="./app.js"></script>
 </body>
 </html>
-
