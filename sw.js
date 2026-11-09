@@ -1,4 +1,4 @@
-const CACHE_NAME = 'al-dzikra-v3.0.0';
+const CACHE_NAME = 'al-dzikra-v3.1.0';
 const CORE_ASSETS = [
   './',
   './index.html',
