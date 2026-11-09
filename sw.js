@@ -1,4 +1,4 @@
-const CACHE_NAME = 'al-dzikra-v3.4.0';
+const CACHE_NAME = 'al-dzikra-v3.5.0';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const CORE_ASSETS = [
   './app.js',
   './data/dzikir.json',
   './manifest.webmanifest',
+  './manifest.webmanifest?v=3.5',
   './fonts/lpmq_isep_misbah.ttf',
   './icons/icon.svg',
   './icons/pagi.svg',
@@ -42,28 +43,20 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
 
-  event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Stale-while-revalidate for core assets
-        fetch(request)
-          .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(request, networkResponse.clone());
-              });
-            }
-          })
-          .catch(() => {});
-        return cachedResponse;
-      }
+  const url = new URL(request.url);
+  const isConfigOrCode =
+    request.mode === 'navigate' ||
+    url.pathname.endsWith('.webmanifest') ||
+    url.pathname.endsWith('.html') ||
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.css');
 
-      return fetch(request)
+  if (isConfigOrCode) {
+    // Network-first for HTML, manifest, JS, and CSS so manifest/UI updates apply immediately
+    event.respondWith(
+      fetch(request, { cache: 'no-cache' })
         .then((networkResponse) => {
-          if (
-            networkResponse &&
-            (networkResponse.status === 200 || networkResponse.type === 'opaque')
-          ) {
+          if (networkResponse && networkResponse.status === 200) {
             const responseClone = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(request, responseClone);
@@ -71,11 +64,31 @@ self.addEventListener('fetch', (event) => {
           }
           return networkResponse;
         })
-        .catch(() => {
-          if (request.mode === 'navigate') {
-            return caches.match('./index.html');
-          }
-        });
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match('./index.html'))
+        )
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(request).then((networkResponse) => {
+        if (
+          networkResponse &&
+          (networkResponse.status === 200 || networkResponse.type === 'opaque')
+        ) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseClone);
+          });
+        }
+        return networkResponse;
+      });
     })
   );
 });
