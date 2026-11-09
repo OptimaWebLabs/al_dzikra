@@ -1,4 +1,4 @@
-const CACHE_NAME = 'al-dzikra-v3.5.0';
+const CACHE_NAME = 'al-dzikra-v3.6.0';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -6,15 +6,19 @@ const CORE_ASSETS = [
   './app.js',
   './data/dzikir.json',
   './manifest.webmanifest',
-  './manifest.webmanifest?v=3.5',
+  './manifest.webmanifest?v=3.6',
   './fonts/lpmq_isep_misbah.ttf',
   './icons/icon.svg',
+  './icons/icon.svg?v=3.6',
   './icons/pagi.svg',
   './icons/petang.svg',
   './icons/sholat.svg',
   './icons/icon-192.png',
+  './icons/icon-192.png?v=3.6',
   './icons/icon-512.png',
+  './icons/icon-512.png?v=3.6',
   './icons/apple-touch-icon.png',
+  './icons/apple-touch-icon.png?v=3.6',
   './icons/bg-dark.jpg',
   './icons/bg-light.jpg'
 ];
