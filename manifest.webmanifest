@@ -1,7 +1,7 @@
 {
-  "name": "Al-Dzikr — Aplikasi Dzikir Harian",
-  "short_name": "Al-Dzikr",
-  "description": "Al-Dzikr adalah aplikasi dzikir harian yang dirancang untuk memudahkan umat Islam mengingat Allah SWT di setiap waktu. Dilengkapi Dzikir Pagi, Dzikir Petang, dan Dzikir Setelah Sholat.",
+  "name": "Al-Dzikra — Aplikasi Dzikir Harian",
+  "short_name": "Al-Dzikra",
+  "description": "Al-Dzikra adalah aplikasi dzikir harian yang dirancang untuk memudahkan umat Islam mengingat Allah SWT di setiap waktu. Dilengkapi Dzikir Pagi, Dzikir Petang, dan Dzikir Ba'da Sholat.",
   "lang": "id",
   "dir": "ltr",
   "start_url": "./?source=pwa",
@@ -9,8 +9,8 @@
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "portrait-primary",
-  "background_color": "#13251b",
-  "theme_color": "#13251b",
+  "background_color": "#14261c",
+  "theme_color": "#14261c",
   "categories": ["lifestyle", "education", "books"],
   "icons": [
     {
@@ -48,21 +48,21 @@
     {
       "name": "Dzikir Pagi",
       "short_name": "Dzikir Pagi",
-      "description": "Buka rangkaian Dzikir Pagi (27 Item Dzikir)",
+      "description": "Setelah Subuh s/d Syuruq",
       "url": "./?category=dzikir-pagi",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Dzikir Petang",
       "short_name": "Dzikir Petang",
-      "description": "Buka rangkaian Dzikir Petang (24 Item Dzikir)",
+      "description": "Setelah Ashar s/d Maghrib",
       "url": "./?category=dzikir-petang",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "Dzikir Setelah Sholat",
-      "short_name": "Setelah Sholat",
-      "description": "Buka rangkaian Dzikir Setelah Sholat (14 Item Dzikir)",
+      "name": "Dzikir Ba'da Sholat",
+      "short_name": "Ba'da Sholat",
+      "description": "Rutinitas ba'da sholat fardhu",
       "url": "./?category=dzikir-sholat",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }

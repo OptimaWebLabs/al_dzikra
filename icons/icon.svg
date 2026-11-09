@@ -1,35 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <defs>
-    <linearGradient id="sageCircle" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#b8d0b9"/>
-      <stop offset="100%" stop-color="#7fa083"/>
+    <linearGradient id="emblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a8c3aa"/>
+      <stop offset="50%" stop-color="#6e9173"/>
+      <stop offset="100%" stop-color="#35583e"/>
     </linearGradient>
   </defs>
-  <!-- Outer Circle -->
-  <circle cx="256" cy="256" r="240" fill="url(#sageCircle)" stroke="#234230" stroke-width="10"/>
-  <!-- Upper Crescent Moon & Star -->
-  <path d="M 210 68 A 95 95 0 1 1 348 165 A 82 82 0 1 0 210 68 Z" fill="#183626"/>
-  <polygon points="275,92 281,108 298,108 284,118 289,134 275,124 261,134 266,118 252,108 269,108" fill="#183626"/>
-  <!-- Mosque Silhouette -->
+  <!-- Outer Crescent Moon Cradle -->
+  <path d="M 105 18 C 48 18, 14 64, 14 114 C 14 164, 58 192, 112 186 C 152 182, 178 156, 184 128 C 168 154, 136 168, 102 164 C 60 159, 36 126, 40 84 C 44 48, 72 24, 105 18 Z" fill="url(#emblemGrad)"/>
+  <!-- Small 5-point Star at top -->
+  <polygon points="106,30 108.5,36 115,36.5 110,41 111.5,47.5 106,44 100.5,47.5 102,41 97,36.5 103.5,36" fill="#7fa184"/>
   <!-- Left Minaret -->
-  <rect x="136" y="190" width="22" height="140" rx="4" fill="#183626"/>
-  <path d="M 134 190 Q 147 162 160 190 Z" fill="#183626"/>
-  <rect x="145" y="150" width="4" height="18" fill="#183626"/>
+  <rect x="64" y="80" width="7" height="54" fill="#43684c"/>
+  <path d="M 63 80 Q 67.5 68 72 80 Z" fill="#43684c"/>
+  <line x1="67.5" y1="62" x2="67.5" y2="70" stroke="#43684c" stroke-width="1.8"/>
   <!-- Right Minaret -->
-  <rect x="354" y="190" width="22" height="140" rx="4" fill="#183626"/>
-  <path d="M 352 190 Q 365 162 378 190 Z" fill="#183626"/>
-  <rect x="363" y="150" width="4" height="18" fill="#183626"/>
-  <!-- Center Main Dome -->
-  <path d="M 192 275 C 192 215, 256 185, 256 170 C 256 185, 320 215, 320 275 Z" fill="#183626"/>
-  <rect x="254" y="152" width="4" height="22" fill="#183626"/>
-  <!-- Side Domes -->
-  <path d="M 162 285 C 162 252, 185 240, 185 232 C 185 240, 206 252, 206 285 Z" fill="#183626"/>
-  <path d="M 306 285 C 306 252, 327 240, 327 232 C 327 240, 350 252, 350 285 Z" fill="#183626"/>
-  <!-- Mosque Base & Windows -->
-  <rect x="136" y="275" width="240" height="58" rx="4" fill="#183626"/>
-  <path d="M 242 333 L 242 298 A 14 14 0 0 1 270 298 L 270 333 Z" fill="#a2bea4"/>
-  <path d="M 198 333 L 198 306 A 9 9 0 0 1 216 306 L 216 333 Z" fill="#a2bea4"/>
-  <path d="M 296 333 L 296 306 A 9 9 0 0 1 314 306 L 314 333 Z" fill="#a2bea4"/>
-  <!-- Bottom Curved Pedestal Waves -->
-  <path d="M 75 352 Q 256 392 437 352 Q 395 430 256 452 Q 117 430 75 352 Z" fill="#183626"/>
+  <rect x="145" y="80" width="7" height="54" fill="#43684c"/>
+  <path d="M 144 80 Q 148.5 68 153 80 Z" fill="#43684c"/>
+  <line x1="148.5" y1="62" x2="148.5" y2="70" stroke="#43684c" stroke-width="1.8"/>
+  <!-- Center Main Mosque Dome -->
+  <path d="M 80 112 C 80 84, 108 72, 108 63 C 108 72, 136 84, 136 112 Z" fill="#3a5d43"/>
+  <line x1="108" y1="54" x2="108" y2="65" stroke="#3a5d43" stroke-width="2"/>
+  <!-- Mosque Building Base -->
+  <rect x="64" y="112" width="88" height="24" rx="2" fill="#2d4d35"/>
+  <!-- Arched Doors/Windows -->
+  <path d="M 102 136 L 102 121 A 6 6 0 0 1 114 121 L 114 136 Z" fill="#9bb89e"/>
+  <path d="M 84 136 L 84 124 A 4 4 0 0 1 92 124 L 92 136 Z" fill="#9bb89e"/>
+  <path d="M 124 136 L 124 124 A 4 4 0 0 1 132 124 L 132 136 Z" fill="#9bb89e"/>
+  <!-- Curved Base Waves inside Crescent -->
+  <path d="M 52 140 Q 108 154 166 136 Q 142 158 106 160 Q 72 160 52 140 Z" fill="#88a88d"/>
 </svg>

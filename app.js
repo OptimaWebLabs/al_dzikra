@@ -1,16 +1,15 @@
 (function () {
   'use strict';
 
-  const PREFS_KEY = 'al_dzikr_prefs_v2';
+  const PREFS_KEY = 'al_dzikra_prefs_v3';
 
   let categoriesData = [];
   let activeScreen = 'beranda'; // 'beranda' | 'reader' | 'pengaturan' | 'tentang'
   let activeCategoryId = 'dzikir-pagi';
-  let deferredInstallPrompt = null;
 
   let prefs = {
     themeMode: 'dark', // 'system' | 'light' | 'dark'
-    arabicSp: 28
+    arabicSp: 30
   };
 
   // DOM Elements
@@ -23,19 +22,13 @@
 
   const navButtons = document.querySelectorAll('[data-nav-target]');
   const readerCategoryTitle = document.getElementById('readerCategoryTitle');
-  const readerCategoryCount = document.getElementById('readerCategoryCount');
+  const readerCategorySubtitle = document.getElementById('readerCategorySubtitle');
   const dzikirItemsList = document.getElementById('dzikirItemsList');
   const btnBackToHome = document.getElementById('btnBackToHome');
   const fontSizeSlider = document.getElementById('fontSizeSlider');
   const fontSizeLabel = document.getElementById('fontSizeLabel');
   const themeRadios = document.querySelectorAll('input[name="themeMode"]');
   const metaThemeColor = document.getElementById('metaThemeColor');
-
-  const installGuideModal = document.getElementById('installGuideModal');
-  const btnOpenInstallModal = document.getElementById('btnOpenInstallModal');
-  const btnCloseInstallModal = document.getElementById('btnCloseInstallModal');
-  const nativeInstallWrap = document.getElementById('nativeInstallWrap');
-  const btnNativeInstallNow = document.getElementById('btnNativeInstallNow');
 
   function loadPrefs() {
     try {
@@ -67,11 +60,11 @@
     const effectiveTheme = resolveEffectiveTheme();
     document.documentElement.setAttribute('data-theme', effectiveTheme);
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#13251b' : '#d3e0d3');
+      metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#14261c' : '#d3e0d3');
     }
 
     // Apply Arabic font size (sp -> px)
-    const sp = Number(prefs.arabicSp) || 28;
+    const sp = Number(prefs.arabicSp) || 30;
     document.documentElement.style.setProperty('--arabic-sp', sp + 'px');
     if (fontSizeSlider) fontSizeSlider.value = String(sp);
     if (fontSizeLabel) fontSizeLabel.textContent = `Ukuran Teks Arab: ${sp} sp`;
@@ -117,7 +110,7 @@
     if (!cat) return;
 
     readerCategoryTitle.textContent = cat.category;
-    readerCategoryCount.textContent = `${cat.items.length} Item Dzikir`;
+    readerCategorySubtitle.textContent = cat.subtitle || `${cat.items.length} Item Dzikir`;
 
     dzikirItemsList.innerHTML = cat.items
       .map((item) => {
@@ -208,53 +201,6 @@
     }
   }
 
-  // PWA Install Handling
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    if (nativeInstallWrap) nativeInstallWrap.style.display = 'block';
-  });
-
-  if (btnOpenInstallModal) {
-    btnOpenInstallModal.addEventListener('click', async () => {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        const { outcome } = await deferredInstallPrompt.userChoice;
-        if (outcome === 'accepted') {
-          deferredInstallPrompt = null;
-          return;
-        }
-      }
-      installGuideModal.classList.add('open');
-    });
-  }
-
-  if (btnCloseInstallModal) {
-    btnCloseInstallModal.addEventListener('click', () => {
-      installGuideModal.classList.remove('open');
-    });
-  }
-
-  if (installGuideModal) {
-    installGuideModal.addEventListener('click', (e) => {
-      if (e.target === installGuideModal) {
-        installGuideModal.classList.remove('open');
-      }
-    });
-  }
-
-  if (btnNativeInstallNow) {
-    btnNativeInstallNow.addEventListener('click', async () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      const { outcome } = await deferredInstallPrompt.userChoice;
-      if (outcome === 'accepted') {
-        deferredInstallPrompt = null;
-        installGuideModal.classList.remove('open');
-      }
-    });
-  }
-
   // Register Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -269,7 +215,6 @@
       const res = await fetch('./data/dzikir.json');
       categoriesData = await res.json();
 
-      // Check URL query parameter (?category=dzikir-pagi) from PWA shortcuts
       const params = new URLSearchParams(window.location.search);
       const catParam = params.get('category');
       if (catParam && categoriesData.some((c) => c.id === catParam)) {

@@ -2,7 +2,7 @@
   {
     "id": "dzikir-pagi",
     "category": "Dzikir Pagi",
-    "subtitle": "Dibaca setelah Subuh hingga terbit matahari (atau waktu Dhuha)",
+    "subtitle": "Setelah Subuh s/d Syuruq",
     "icon": "sun",
     "total_items": 27,
     "items": [
@@ -341,7 +341,7 @@
   {
     "id": "dzikir-petang",
     "category": "Dzikir Petang",
-    "subtitle": "Dibaca setelah Ashar hingga terbenam matahari (atau menjelang malam)",
+    "subtitle": "Setelah Ashar s/d Maghrib",
     "icon": "moon",
     "total_items": 24,
     "items": [
@@ -643,8 +643,8 @@
   },
   {
     "id": "dzikir-sholat",
-    "category": "Dzikir Setelah Sholat",
-    "subtitle": "14 Item Dzikir",
+    "category": "Dzikir Ba'da Sholat",
+    "subtitle": "Rutinitas ba'da sholat fardhu",
     "icon": "prayer",
     "total_items": 14,
     "items": [
